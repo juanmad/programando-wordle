@@ -35,6 +35,7 @@ html, body {
 #keyboard {
     padding: 20px;
     justify-content: center;
+    display: grid;
 }
 
 .keyboard-row {
