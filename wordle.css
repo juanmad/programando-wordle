@@ -1,0 +1,7 @@
+#wordle-container {
+    display: grid;
+    grid-template-columns: repeat(5, 40px);
+    grid-template-rows: repeat(5, 40px);
+    gap: 10px;
+    justify-content: center;
+}
