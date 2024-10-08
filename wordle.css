@@ -1,7 +1,22 @@
+/* Wordle Colors */
+/* 
+
+green: #538d4e
+yellow: #b59f3b
+gray: #3a3a3c
+
+bg: #121213
+*/
+
 #wordle-container {
     display: grid;
     grid-template-columns: repeat(5, 40px);
     grid-template-rows: repeat(5, 40px);
     gap: 10px;
     justify-content: center;
+}
+
+.letter {
+    border: gainsboro, 1px solid;
+    background: #121213
 }

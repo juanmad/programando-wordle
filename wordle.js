@@ -5,6 +5,7 @@ for(let i = 0; i < 5; i++) {
         const input = document.createElement('input');
         input.type = 'text';
         input.id = 'a'+i+j;
+        input.className = 'letter';
 
         wordleMatrix.appendChild(input);
     }
