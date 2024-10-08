@@ -6,6 +6,7 @@ for(let i = 0; i < 5; i++) {
         input.type = 'text';
         input.id = 'a'+i+j;
         input.className = 'letter';
+        input.autocomplete = 'off';
         input.setAttribute('maxlength', '1');
 
         wordleMatrix.appendChild(input);
