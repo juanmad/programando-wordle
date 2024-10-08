@@ -6,6 +6,8 @@ yellow: #b59f3b
 gray: #3a3a3c
 
 bg: #121213
+keyboard-bg: #818384
+
 */
 
 #wordle-container {
@@ -19,4 +21,24 @@ bg: #121213
 .letter {
     border: gainsboro, 1px solid;
     background: #121213
+}
+
+#keyboard {
+    padding: 20px;
+    justify-content: center;
+}
+
+.keyboard-row {
+    display: flex;
+    margin: 5px;
+}
+
+.key {
+    background-color: #818384;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 5px;
+    text-align: center;
+    cursor: pointer;
 }
