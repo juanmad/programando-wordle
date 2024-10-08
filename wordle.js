@@ -21,14 +21,15 @@ const keyboard = [
 
 const keyboardMatrix = document.getElementById('keyboard');
 
-keyboard.forEach((row) => {
+keyboard.forEach((row, i) => {
     const rowDiv = document.createElement('div');
     rowDiv.className = 'keyboard-row';
 
-    row.forEach((key) => {
+    row.forEach((key, j) => {
         const keyDiv = document.createElement('div');
         keyDiv.className = 'key';
         keyDiv.textContent = key;
+        keyDiv.id = `key-${i}-${j}`;
         rowDiv.appendChild(keyDiv);
     });
 
