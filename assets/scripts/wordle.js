@@ -25,7 +25,7 @@ export const createWordleBoard = () => {
             input.setAttribute('maxlength', '1');
 
             input.addEventListener('input', (event) => {
-                const character = event.target.character;
+                const character = event.target.value;
                 if (character.length === 1) {
                     moveToNextInput(i, j);
                 }
