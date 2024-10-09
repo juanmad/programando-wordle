@@ -19,6 +19,14 @@ const keyboard = [
     ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '\u232B'],
 ]
 
+// Eventos del teclado al hacer click
+const pressedKey = document.querySelectorAll('.clicked');
+
+const clickedKey = (event) => {
+    const key = event.target;
+    console.log('You clicked on:', key.id);
+}
+
 const keyboardMatrix = document.getElementById('keyboard');
 
 keyboard.forEach((row, i) => {
@@ -27,9 +35,10 @@ keyboard.forEach((row, i) => {
 
     row.forEach((key, j) => {
         const keyDiv = document.createElement('div');
-        keyDiv.className = 'key';
+        keyDiv.className = 'key clicked';
         keyDiv.textContent = key;
         keyDiv.id = `key-${i}-${j}`;
+        keyDiv.addEventListener('click', clickedKey);
         rowDiv.appendChild(keyDiv);
     });
 
