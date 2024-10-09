@@ -67,9 +67,10 @@ const words = [
   
 const wordsSplit = words.map(word => word.split(''));
 
-const secretWord = () => {
+const randomSecretWord = () => {
     const randomIndex = Math.floor(Math.random() * wordsSplit.length);
     return wordsSplit[randomIndex];
   };
 
-console.log(secretWord());
+const secretWord = randomSecretWord();
+console.log(secretWord);
