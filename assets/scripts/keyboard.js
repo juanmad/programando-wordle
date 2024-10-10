@@ -11,7 +11,7 @@ export const createKeyboard = () => {
 
     const clickedKey = (event) => {
         const key = event.target;
-        console.log('You clicked on:', key.id);
+        console.log('Click en:', key.id);
     }
 
     const keyboardMatrix = document.getElementById('keyboard');
