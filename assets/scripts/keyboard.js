@@ -33,3 +33,12 @@ export const createKeyboard = () => {
     });
 
 };
+
+export const getWord = (rowID) => {
+    const word = document.getElementById(rowID).querySelectorAll('.letter');
+    const wordArray = [];
+    word.forEach((letter) => {
+        wordArray.push(letter.value);
+    });
+    return wordArray.join('');
+};
