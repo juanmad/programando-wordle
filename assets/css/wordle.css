@@ -58,18 +58,19 @@ html, body {
     font-weight: bold;
     border-radius: 5px;
     padding: 10px;
-    margin: 0 5px;
+    margin: 0 3px;
     text-align: center;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 15px;
 }
 
 .key:hover {
     background-color: #3b3b3b;
+    scale: 1.1;
 }
 
 #key-ENTER, #key-BACKSPACE {

@@ -12,7 +12,6 @@ const words = [
     "salas",
     "lomos",
     "canto",
-    "viento",
     "pacto",
     "hojas",
     "barco",
