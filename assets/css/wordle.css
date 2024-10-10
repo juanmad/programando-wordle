@@ -68,6 +68,10 @@ html, body {
     height: 20px;
 }
 
-#key-2-0, #key-2-8 {
+.key:hover {
+    background-color: #3b3b3b;
+}
+
+#key-ENTER, #key-BACKSPACE {
     width: 45px;
 }
