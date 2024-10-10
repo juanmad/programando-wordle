@@ -24,7 +24,13 @@ export const createKeyboard = () => {
             const keyDiv = document.createElement('div');
             keyDiv.className = 'key clicked';
             keyDiv.textContent = key;
-            keyDiv.id = `key-${i}-${j}`;
+
+            if(key !== '\u232B') {
+                keyDiv.id = `key-${key}`;
+            } else {
+                keyDiv.id = `key-BACKSPACE`;
+            }
+
             keyDiv.addEventListener('click', clickedKey);
             rowDiv.appendChild(keyDiv);
         });
