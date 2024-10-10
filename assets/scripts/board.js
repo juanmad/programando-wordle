@@ -32,9 +32,11 @@ export const createWordleBoard = () => {
             input.autocomplete = 'off';
             input.setAttribute('maxlength', '1');
 
-            input.addEventListener('input', (event) => {
-                const character = event.target.value;
-                if (character.length === 1) {
+            input.addEventListener('input', () => {
+                // Quitar todos los caracteres que no sean a-z A-Z
+                input.value = input.value.replace(/[^a-zA-Z]/g, '');
+
+                if (input.value.length === 1) {
                     moveToNextInput(i, j);
                 }
             });
