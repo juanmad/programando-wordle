@@ -1,4 +1,4 @@
-import { createWordleBoard } from './wordle.js';
+import { createWordleBoard } from './board.js';
 import { createKeyboard } from './keyboard.js';
 import { randomSecretWord } from './words.js';
 

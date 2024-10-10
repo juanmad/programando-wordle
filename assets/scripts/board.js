@@ -1,3 +1,6 @@
+const boardRows = 6;
+const wordLength = 5;
+
 const moveToNextInput = (i, j) => {
     const nextInput = document.getElementById(`a${i}${j + 1}`);
     if (nextInput) { // Si existe mover el focus al siguiente input
@@ -13,10 +16,16 @@ const moveToPreviousInput = (i, j) => {
 };
 
 export const createWordleBoard = () => {
-    const wordleMatrix = document.getElementById('wordle-container');
+    const wordleMatrix = document.getElementById('board');
 
-    for (let i = 0; i < 5; i++) {
-        for (let j = 0; j < 5; j++) {
+    for (let i = 0; i < boardRows; i++) {
+        
+        const rowDiv = document.createElement('div');
+        rowDiv.className = 'board-row';
+        rowDiv.id = 'board-row-${i}';
+        
+        
+        for (let j = 0; j < wordLength; j++) {
             const input = document.createElement('input');
             input.type = 'text';
             input.id = 'a' + i + j;
@@ -40,7 +49,8 @@ export const createWordleBoard = () => {
                 }
             });
 
-            wordleMatrix.appendChild(input);
+            rowDiv.appendChild(input);
         }
+        wordleMatrix.appendChild(rowDiv);
     }
 };
