@@ -22,8 +22,7 @@ export const createWordleBoard = () => {
         
         const rowDiv = document.createElement('div');
         rowDiv.className = 'board-row';
-        rowDiv.id = 'board-row-${i}';
-        
+        rowDiv.id = `board-row-${i}`;
         
         for (let j = 0; j < wordLength; j++) {
             const input = document.createElement('input');
