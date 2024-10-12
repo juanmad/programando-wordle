@@ -1,8 +1,8 @@
-import { checkWordinArray, checkWordMatch } from "./gamelogic.js";
+import { checkWordinArray, checkWordMatch, enableInput, disableInput } from "./gamelogic.js";
 
 export const boardRows = 6;
 export const wordLength = 5;
-export const activeRow = 0;
+export let activeRow = 0;
 
 const moveToNextInput = (i, j) => {
     const nextInput = document.getElementById(`input-${i}-${j + 1}`);
@@ -17,6 +17,10 @@ const moveToPreviousInput = (i, j) => {
         prevInput.focus();
     }
 };
+
+export const nextActiveRow = () => {
+    activeRow++;
+}
 
 export const createWordleBoard = () => {
     const wordleMatrix = document.getElementById('board');
@@ -62,7 +66,6 @@ export const createWordleBoard = () => {
                     } else {
                         checkWordMatch();
                     }
-
                 }
             });
 
@@ -71,4 +74,6 @@ export const createWordleBoard = () => {
         }
         wordleMatrix.appendChild(rowDiv);
     }
+    const firstInput = document.getElementById(`input-${activeRow}-${0}`);
+    firstInput.focus();
 };
