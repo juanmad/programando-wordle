@@ -12,14 +12,3 @@ createKeyboard();
 // para probar en el inspector de manera global hay que asignar a window para que esté disponible
 window.getWord = getWord;
 enableInput();
-
-
-import { wordsArray } from './words.js';
-import { wordsArraySorted } from './words.js';
-
-window.wordsArray = wordsArray;
-
-window.wordsArraySorted = wordsArraySorted;
-
-console.log('wordsArray:', wordsArray);
-console.log('wordsArraySorted:', wordsArraySorted);

@@ -1,6 +1,4 @@
 import { getWord } from './keyboard.js';
-import { wordsArray } from './words.js';
-import { wordsArraySorted } from './words.js';
 import { words, randomSecretWord } from './words.js';
 
 import { boardRows, wordLength, activeRow } from './board.js';
@@ -70,6 +68,7 @@ export const checkWordMatch = () => {
         if (letter.toLowerCase() === secretWord[i].toLowerCase()) {
             console.log("Y", letter, 'pos:', i);
             input.style.backgroundColor = '#538d4e';
+            input.style.borderColor = '#538d4e';
         } else if (secretWord.includes(letter)){
             console.log("N", letter, 'pos:', i);
             input.style.backgroundColor = '#b59f3b';
