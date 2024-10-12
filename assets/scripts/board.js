@@ -1,15 +1,16 @@
-const boardRows = 6;
-const wordLength = 5;
+export const boardRows = 6;
+export const wordLength = 5;
+export const activeRow = 0;
 
 const moveToNextInput = (i, j) => {
-    const nextInput = document.getElementById(`a${i}${j + 1}`);
+    const nextInput = document.getElementById(`input-${i}-${j + 1}`);
     if (nextInput) { // Si existe mover el focus al siguiente input
         nextInput.focus(); 
     }
 };
 
 const moveToPreviousInput = (i, j) => {
-    const prevInput = document.getElementById(`a${i}${j - 1}`);
+    const prevInput = document.getElementById(`input-${i}-${j - 1}`);
     if (prevInput) { // Si existe mover el focus al previo input
         prevInput.focus();
     }
@@ -27,10 +28,11 @@ export const createWordleBoard = () => {
         for (let j = 0; j < wordLength; j++) {
             const input = document.createElement('input');
             input.type = 'text';
-            input.id = 'a' + i + j;
+            input.id = `input-${i}-${j}`;
             input.className = 'letter';
             input.autocomplete = 'off';
             input.setAttribute('maxlength', '1');
+            input.disabled = true;
 
             input.addEventListener('input', () => {
                 // Quitar todos los caracteres que no sean a-z A-Z
@@ -49,6 +51,14 @@ export const createWordleBoard = () => {
                     moveToPreviousInput(i, j);
                 }
             });
+
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    console.log('Enter');
+                }
+            });
+
 
             rowDiv.appendChild(input);
         }
