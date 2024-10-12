@@ -68,6 +68,9 @@ export const checkWordMatch = () => {
                 console.log("Y", letter, 'pos:', i);
                 input.style.backgroundColor = '#538d4e';
                 input.style.borderColor = '#538d4e';
+
+                // BUG: si es que hay más dos letras iguales en getWord igual se pone en amarillo una de las letras en la posicion que no
+                // correcta, para reproducir secretWord = "suelo" y getWord = "lomos"
             } else if (secretWord.includes(letter)) {
                 console.log("N", letter, 'pos:', i);
                 input.style.backgroundColor = '#b59f3b';
