@@ -1,3 +1,5 @@
+import { checkWordinArray, checkWordMatch } from "./gamelogic.js";
+
 export const boardRows = 6;
 export const wordLength = 5;
 export const activeRow = 0;
@@ -55,7 +57,12 @@ export const createWordleBoard = () => {
             input.addEventListener('keydown', (event) => {
                 if (event.key === 'Enter') {
                     event.preventDefault();
-                    console.log('Enter');
+                    if(!checkWordinArray()) {
+                        alert('Word not in array');
+                    } else {
+                        checkWordMatch();
+                    }
+
                 }
             });
 
