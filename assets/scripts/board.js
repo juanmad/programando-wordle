@@ -53,8 +53,15 @@ export const createWordleBoard = () => {
             input.addEventListener('keydown', (event) => {
                 if (event.key === 'Backspace') {
                     event.preventDefault();
-                    input.value = '';
                     moveToPreviousInput(i, j);
+
+                    // En caso de que el input selecionado esté vacío, se mueve al input anterior para borrar esa letra
+                    if (input.value === '') {
+                        moveToPreviousInput(i, j);
+                        const prevInput = document.getElementById(`input-${i}-${j - 1}`);
+                        prevInput.value = '';
+                    }
+                    input.value = '';
                 }
             });
 
