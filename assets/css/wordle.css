@@ -69,8 +69,12 @@ html, body {
 }
 
 .key:hover {
-    background-color: #3b3b3b;
+    background-color: #a0a0a0;
     scale: 1.1;
+}
+
+.disabled {
+    pointer-events: none;
 }
 
 #key-ENTER, #key-BACKSPACE {
