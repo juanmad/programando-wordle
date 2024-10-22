@@ -7,7 +7,7 @@ export let activeRow = 0;
 export const moveToNextInput = (i, j) => {
     const nextInput = document.getElementById(`input-${i}-${j + 1}`);
     if (nextInput) { // Si existe mover el focus al siguiente input
-        nextInput.focus(); 
+        nextInput.focus();
     }
 };
 
@@ -28,13 +28,17 @@ export const backspacePressed = (input, i, j) => {
     if (input.value === '') {
         moveToPreviousInput(i, j);
         const prevInput = document.getElementById(`input-${i}-${j - 1}`);
-        prevInput.value = '';
+        if (prevInput) {
+            prevInput.value = '';
+        }
     }
-    input.value = '';
+    if (input) {
+        input.value = '';
+    }
 };
 
 export const enterPressed = () => {
-    if(!checkWordinArray()) {
+    if (!checkWordinArray()) {
         alert('Word not in array');
     } else {
         checkWordMatch();
@@ -45,11 +49,11 @@ export const createWordleBoard = () => {
     const wordleMatrix = document.getElementById('board');
 
     for (let i = 0; i < boardRows; i++) {
-        
+
         const rowDiv = document.createElement('div');
         rowDiv.className = 'board-row';
         rowDiv.id = `board-row-${i}`;
-        
+
         for (let j = 0; j < wordLength; j++) {
             const input = document.createElement('input');
             input.type = 'text';
