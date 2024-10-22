@@ -3,6 +3,7 @@ import { checkWordinArray, checkWordMatch, enableInput, disableInput } from "./g
 export const boardRows = 6;
 export const wordLength = 5;
 export let activeRow = 0;
+export const score = { value: boardRows };
 
 export const moveToNextInput = (i, j) => {
     const nextInput = document.getElementById(`input-${i}-${j + 1}`);

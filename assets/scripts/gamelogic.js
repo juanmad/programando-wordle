@@ -1,6 +1,6 @@
 import { getWord, clickedKey } from './keyboard.js';
 import { words, randomSecretWord } from './words.js';
-import { boardRows, wordLength, nextActiveRow, activeRow } from './board.js';
+import { score, wordLength, nextActiveRow, activeRow } from './board.js';
 
 const secretWord = randomSecretWord();
 console.log('secretWord:', secretWord);
@@ -8,14 +8,18 @@ console.log('secretWord:', secretWord);
 export const enableInput = () => {
     for (let i = 0; i < wordLength; i++) {
         const input = document.getElementById(`input-${activeRow}-${i}`);
-        input.disabled = false;
+        if (input) {
+            input.disabled = false;
+        }
     }
 }
 
 export const disableInput = () => {
     for (let i = 0; i < wordLength; i++) {
         const input = document.getElementById(`input-${activeRow}-${i}`);
-        input.disabled = true;
+        if (input) {
+            input.disabled = false;
+        }
     }
 }
 
@@ -52,8 +56,16 @@ export const checkWordMatch = () => {
             input.style.backgroundColor = '#538d4e';
             input.style.borderColor = '#538d4e';
         });
+
+        setTimeout(() => {
+            alert(`Felicidades, ganaste! Adivinaste la palabra!\nTu puntaje es: ${score.value}`);
+        }, 100); // delay de 100 para que se pinte de color antes de la alerta
+
     } else {
         console.log('word does not match');
+
+        score.value--;
+        if (score.value < 0) score.value = 0; // Para asegurar que no sea menor a cero
 
         word.forEach((letter, i) => {
             const input = document.getElementById(`input-${activeRow}-${i}`);
@@ -62,6 +74,7 @@ export const checkWordMatch = () => {
             if (letter.toLowerCase() === secretWord[i].toLowerCase()) {
                 input.style.backgroundColor = '#538d4e'; // Verde
                 input.style.borderColor = '#538d4e';
+                key.style.backgroundColor = '#538d4e';
                 letterCount[letter]--; // Decrementar count para la letra encontrada
             } else if (secretWord.includes(letter) && letterCount[letter] > 0) {
                 input.style.backgroundColor = '#b59f3b'; // Amarillo
@@ -77,10 +90,15 @@ export const checkWordMatch = () => {
             }
         });
     }
-    
+
     disableInput();
     nextActiveRow();
     enableInput();
     const nextInput = document.getElementById(`input-${activeRow}-${0}`);
-    nextInput.focus();
+    if (nextInput) {
+        nextInput.focus();
+    }
+    if (score.value === 0) {
+        alert(`Perdiste!\nLa palabra era: ${secretWord.join('').toUpperCase()}\nTu puntaje es: ${score.value}`);
+    }
 }
