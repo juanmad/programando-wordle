@@ -1,4 +1,4 @@
-import { moveToNextInput, moveToPreviousInput, backspacePressed, enterPressed } from "./board.js";
+import { moveToNextInput, backspacePressed, enterPressed } from "./board.js";
 
 export const createKeyboard = () => {
 
@@ -26,7 +26,7 @@ export const createKeyboard = () => {
             if (key.id === 'key-BACKSPACE') {
                 backspacePressed(currentFocusedElement, +currentID[1], +currentID[2]);
             } else if (key.id === 'key-ENTER') {
-                enterPressed(currentFocusedElement, +currentID[1], +currentID[2]);
+                enterPressed();
             } else {
                 currentFocusedElement.value = letter; 
                 moveToNextInput(+currentID[1], +currentID[2]);

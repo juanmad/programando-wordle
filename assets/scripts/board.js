@@ -33,7 +33,7 @@ export const backspacePressed = (input, i, j) => {
     input.value = '';
 };
 
-export const enterPressed = (input, i, j) => {
+export const enterPressed = () => {
     if(!checkWordinArray()) {
         alert('Word not in array');
     } else {
@@ -79,7 +79,7 @@ export const createWordleBoard = () => {
             input.addEventListener('keydown', (event) => {
                 if (event.key === 'Enter') {
                     event.preventDefault();
-                    enterPressed(input, i, j);
+                    enterPressed();
                 }
             });
 
