@@ -1,5 +1,28 @@
 import { moveToNextInput, backspacePressed, enterPressed } from "./board.js";
 
+let currentFocusedElement = null;
+
+export const clickedKey = (event) => {
+    const key = event.target;
+    const letter = key.id.split('-')[1];
+    const idPattern = /^input-\d+-\d+$/;
+    const currentID = currentFocusedElement.id.split('-');
+    
+    if (currentFocusedElement && currentFocusedElement.tagName === 'INPUT' && idPattern.test(currentFocusedElement.id)) {
+        if (key.id === 'key-BACKSPACE') {
+            backspacePressed(currentFocusedElement, +currentID[1], +currentID[2]);
+        } else if (key.id === 'key-ENTER') {
+            enterPressed();
+        } else {
+            currentFocusedElement.value = letter; 
+            moveToNextInput(+currentID[1], +currentID[2]);
+        }
+    }
+
+    console.log('Click en:', key.id);
+    console.log('Valor:', letter);
+};
+
 export const createKeyboard = () => {
 
     const keyboard = [
@@ -8,33 +31,9 @@ export const createKeyboard = () => {
         ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '\u232B'],
     ]
 
-    // Eventos del teclado al hacer click
-    let currentFocusedElement = null;
-
     // Guardar una referencia al input actualmente en focus
     const handleInputFocus = (event) => {
         currentFocusedElement = event.target;
-    };
-
-    const clickedKey = (event) => {
-        const key = event.target;
-        const letter = key.id.split('-')[1];
-        const idPattern = /^input-\d+-\d+$/;
-        const currentID = currentFocusedElement.id.split('-');
-        
-        if (currentFocusedElement && currentFocusedElement.tagName === 'INPUT' && idPattern.test(currentFocusedElement.id)) {
-            if (key.id === 'key-BACKSPACE') {
-                backspacePressed(currentFocusedElement, +currentID[1], +currentID[2]);
-            } else if (key.id === 'key-ENTER') {
-                enterPressed();
-            } else {
-                currentFocusedElement.value = letter; 
-                moveToNextInput(+currentID[1], +currentID[2]);
-            }
-        }
-    
-        console.log('Click en:', key.id);
-        console.log('Valor:', letter);
     };
 
     const keyboardMatrix = document.getElementById('keyboard');
