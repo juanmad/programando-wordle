@@ -4,14 +4,14 @@ export const boardRows = 6;
 export const wordLength = 5;
 export let activeRow = 0;
 
-const moveToNextInput = (i, j) => {
+export const moveToNextInput = (i, j) => {
     const nextInput = document.getElementById(`input-${i}-${j + 1}`);
     if (nextInput) { // Si existe mover el focus al siguiente input
         nextInput.focus(); 
     }
 };
 
-const moveToPreviousInput = (i, j) => {
+export const moveToPreviousInput = (i, j) => {
     const prevInput = document.getElementById(`input-${i}-${j - 1}`);
     if (prevInput) { // Si existe mover el focus al previo input
         prevInput.focus();
@@ -20,6 +20,25 @@ const moveToPreviousInput = (i, j) => {
 
 export const nextActiveRow = () => {
     activeRow++;
+}
+
+export const backspacePressed = (input, i, j) => {
+    moveToPreviousInput(i, j);
+
+    if (input.value === '') {
+        moveToPreviousInput(i, j);
+        const prevInput = document.getElementById(`input-${i}-${j - 1}`);
+        prevInput.value = '';
+    }
+    input.value = '';
+};
+
+export const enterPressed = (input, i, j) => {
+    if(!checkWordinArray()) {
+        alert('Word not in array');
+    } else {
+        checkWordMatch();
+    }
 }
 
 export const createWordleBoard = () => {
@@ -53,26 +72,14 @@ export const createWordleBoard = () => {
             input.addEventListener('keydown', (event) => {
                 if (event.key === 'Backspace') {
                     event.preventDefault();
-                    moveToPreviousInput(i, j);
-
-                    // En caso de que el input selecionado esté vacío, se mueve al input anterior para borrar esa letra
-                    if (input.value === '') {
-                        moveToPreviousInput(i, j);
-                        const prevInput = document.getElementById(`input-${i}-${j - 1}`);
-                        prevInput.value = '';
-                    }
-                    input.value = '';
+                    backspacePressed(input, i, j);
                 }
             });
 
             input.addEventListener('keydown', (event) => {
                 if (event.key === 'Enter') {
                     event.preventDefault();
-                    if(!checkWordinArray()) {
-                        alert('Word not in array');
-                    } else {
-                        checkWordMatch();
-                    }
+                    enterPressed(input, i, j);
                 }
             });
 
