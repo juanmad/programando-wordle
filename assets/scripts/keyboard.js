@@ -1,3 +1,5 @@
+import { moveToNextInput, moveToPreviousInput, backspacePressed, enterPressed } from "./board.js";
+
 export const createKeyboard = () => {
 
     const keyboard = [
@@ -7,14 +9,39 @@ export const createKeyboard = () => {
     ]
 
     // Eventos del teclado al hacer click
-    const pressedKey = document.querySelectorAll('.clicked');
+    let currentFocusedElement = null;
+
+    // Guardar una referencia al input actualmente en focus
+    const handleInputFocus = (event) => {
+        currentFocusedElement = event.target;
+    };
 
     const clickedKey = (event) => {
         const key = event.target;
+        const letter = key.id.split('-')[1];
+        const idPattern = /^input-\d+-\d+$/;
+        const currentID = currentFocusedElement.id.split('-');
+        
+        if (currentFocusedElement && currentFocusedElement.tagName === 'INPUT' && idPattern.test(currentFocusedElement.id)) {
+            if (key.id === 'key-BACKSPACE') {
+                backspacePressed(currentFocusedElement, +currentID[1], +currentID[2]);
+            } else if (key.id === 'key-ENTER') {
+                enterPressed(currentFocusedElement, +currentID[1], +currentID[2]);
+            } else {
+                currentFocusedElement.value = letter; 
+                moveToNextInput(+currentID[1], +currentID[2]);
+            }
+        }
+    
         console.log('Click en:', key.id);
-    }
+        console.log('Valor:', letter);
+    };
 
     const keyboardMatrix = document.getElementById('keyboard');
+
+    document.querySelectorAll('input[id^="input-"]').forEach(input => {
+        input.addEventListener('focus', handleInputFocus);
+    });
 
     keyboard.forEach((row, i) => {
         const rowDiv = document.createElement('div');
@@ -31,6 +58,7 @@ export const createKeyboard = () => {
                 keyDiv.id = `key-BACKSPACE`;
             }
 
+            keyDiv.tabIndex = -1; // Prevenir que el focus se mueva a este div
             keyDiv.addEventListener('click', clickedKey);
             rowDiv.appendChild(keyDiv);
         });
